@@ -281,7 +281,7 @@ export default function Checkout() {
           contact: user?.phone || '',
         },
         theme: {
-          color: '#ff0033',
+          color: '#C41E24',
         },
         handler: async (response: any) => {
           // 4. Verify payment on backend
@@ -364,17 +364,17 @@ export default function Checkout() {
       {step < 4 && (
         <div className="flex items-center justify-center mb-12 max-w-3xl mx-auto">
           <div className={`flex items-center space-x-2 ${step >= 1 ? 'text-black dark:text-white' : 'text-zinc-400 dark:text-gray-600'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step >= 1 ? 'bg-[#ff0033] text-white' : 'bg-zinc-200 dark:bg-gray-800 text-zinc-500'}`}>1</div>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step >= 1 ? 'bg-[#C41E24] text-white' : 'bg-zinc-200 dark:bg-gray-800 text-zinc-500'}`}>1</div>
             <span className="font-montserrat uppercase text-xs tracking-wider font-bold hidden md:block">Shipping</span>
           </div>
-          <div className={`flex-1 h-[1px] mx-4 ${step >= 2 ? 'bg-[#ff0033]' : 'bg-zinc-200 dark:bg-gray-800'}`}></div>
+          <div className={`flex-1 h-[1px] mx-4 ${step >= 2 ? 'bg-[#C41E24]' : 'bg-zinc-200 dark:bg-gray-800'}`}></div>
           <div className={`flex items-center space-x-2 ${step >= 2 ? 'text-black dark:text-white' : 'text-zinc-400 dark:text-gray-600'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step >= 2 ? 'bg-[#ff0033] text-white' : 'bg-zinc-200 dark:bg-gray-800 text-zinc-500'}`}>2</div>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step >= 2 ? 'bg-[#C41E24] text-white' : 'bg-zinc-200 dark:bg-gray-800 text-zinc-500'}`}>2</div>
             <span className="font-montserrat uppercase text-xs tracking-wider font-bold hidden md:block">Payment</span>
           </div>
-          <div className={`flex-1 h-[1px] mx-4 ${step >= 3 ? 'bg-[#ff0033]' : 'bg-zinc-200 dark:bg-gray-800'}`}></div>
+          <div className={`flex-1 h-[1px] mx-4 ${step >= 3 ? 'bg-[#C41E24]' : 'bg-zinc-200 dark:bg-gray-800'}`}></div>
           <div className={`flex items-center space-x-2 ${step >= 3 ? 'text-black dark:text-white' : 'text-zinc-400 dark:text-gray-600'}`}>
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step >= 3 ? 'bg-[#ff0033] text-white' : 'bg-zinc-200 dark:bg-gray-800 text-zinc-500'}`}>3</div>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step >= 3 ? 'bg-[#C41E24] text-white' : 'bg-zinc-200 dark:bg-gray-800 text-zinc-500'}`}>3</div>
             <span className="font-montserrat uppercase text-xs tracking-wider font-bold hidden md:block">Verification</span>
           </div>
         </div>
@@ -383,7 +383,7 @@ export default function Checkout() {
       {step === 4 ? (
         <div className="flex justify-center w-full">
           <div className="max-w-xl w-full space-y-8 text-center py-12 px-6 bg-white dark:bg-[#0A0A0A] border border-zinc-200 dark:border-white/5 rounded-2xl shadow-sm dark:shadow-none transition-colors duration-300">
-            <CheckCircle2 size={64} className="text-[#ff0033] mx-auto mb-6 animate-bounce" />
+            <CheckCircle2 size={64} className="text-[#C41E24] mx-auto mb-6 animate-bounce" />
             <h2 className="text-4xl font-bebas text-black dark:text-white tracking-wide">Order Placed Successfully!</h2>
             <p className="text-zinc-650 dark:text-gray-300 font-poppins text-lg">Your order has been confirmed and is being processed.</p>
             {paymentMethod === 'UPI' && (
@@ -393,7 +393,7 @@ export default function Checkout() {
             )}
             <p className="text-zinc-500 dark:text-gray-500 font-poppins text-sm">We've sent a confirmation email to you.</p>
             
-            <button onClick={() => router.push('/')} className="bg-[#ff0033] text-white px-10 py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-black hover:text-white dark:hover:text-black transition-colors inline-block cursor-pointer">
+            <button onClick={() => router.push('/')} className="bg-[#C41E24] text-white px-10 py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-black hover:text-white dark:hover:text-black transition-colors inline-block cursor-pointer">
               Continue Shopping
             </button>
           </div>
@@ -434,12 +434,12 @@ export default function Checkout() {
                             }}
                             className={`p-4 border rounded-xl cursor-pointer transition-all duration-300 relative text-left bg-zinc-50 dark:bg-white/[0.02] ${
                               isSelected 
-                                ? 'border-[#ff0033] shadow-[0_0_15px_rgba(255,0,51,0.15)] ring-1 ring-[#ff0033]' 
+                                ? 'border-[#C41E24] shadow-[0_0_15px_rgba(255,0,51,0.15)] ring-1 ring-[#C41E24]' 
                                 : 'border-zinc-200 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/30'
                             }`}
                           >
                             {addr.isDefault && (
-                              <span className="absolute top-3 right-3 bg-[#ff0033]/10 text-[#ff0033] text-[8px] font-montserrat font-bold px-2 py-0.5 rounded tracking-widest">
+                              <span className="absolute top-3 right-3 bg-[#C41E24]/10 text-[#C41E24] text-[8px] font-montserrat font-bold px-2 py-0.5 rounded tracking-widest">
                                 DEFAULT
                               </span>
                             )}
@@ -468,11 +468,11 @@ export default function Checkout() {
                         }}
                         className={`p-4 border rounded-xl cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-[140px] text-center bg-zinc-50 dark:bg-white/[0.02] ${
                           useNewAddress 
-                            ? 'border-[#ff0033] shadow-[0_0_15px_rgba(255,0,51,0.15)] ring-1 ring-[#ff0033]' 
+                            ? 'border-[#C41E24] shadow-[0_0_15px_rgba(255,0,51,0.15)] ring-1 ring-[#C41E24]' 
                             : 'border-zinc-200 dark:border-white/10 hover:border-zinc-400 dark:hover:border-white/30'
                         }`}
                       >
-                        <Plus size={24} className={useNewAddress ? 'text-[#ff0033] mb-2' : 'text-zinc-400 dark:text-gray-500 mb-2'} />
+                        <Plus size={24} className={useNewAddress ? 'text-[#C41E24] mb-2' : 'text-zinc-400 dark:text-gray-500 mb-2'} />
                         <span className="font-montserrat text-xs font-bold uppercase tracking-wider text-black dark:text-white">Use a New Address</span>
                       </div>
                     </div>
@@ -488,7 +488,7 @@ export default function Checkout() {
                         type="button" 
                         onClick={handleAutofillAddressFromLocation}
                         disabled={detectingLocation}
-                        className="text-[#ff0033] hover:underline text-xs font-montserrat font-bold uppercase tracking-wider flex items-center gap-1 cursor-pointer disabled:opacity-50"
+                        className="text-[#C41E24] hover:underline text-xs font-montserrat font-bold uppercase tracking-wider flex items-center gap-1 cursor-pointer disabled:opacity-50"
                       >
                         <MapPin size={13} className={detectingLocation ? "animate-bounce" : ""} />
                         <span>{detectingLocation ? "Detecting..." : "Auto-detect Address"}</span>
@@ -497,27 +497,27 @@ export default function Checkout() {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="col-span-2">
                         <label className="block text-xs font-montserrat text-zinc-500 dark:text-gray-400 uppercase tracking-wider mb-2">Full Name</label>
-                        <input required type="text" value={shippingAddress.name} onChange={(e) => setShippingAddress({...shippingAddress, name: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#ff0033] focus:outline-none transition-colors" placeholder="e.g. Sudhanshu Patel" />
+                        <input required type="text" value={shippingAddress.name} onChange={(e) => setShippingAddress({...shippingAddress, name: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#C41E24] focus:outline-none transition-colors" placeholder="e.g. Sudhanshu Patel" />
                       </div>
                       <div className="col-span-2">
                         <label className="block text-xs font-montserrat text-zinc-500 dark:text-gray-400 uppercase tracking-wider mb-2">Address Line 1</label>
-                        <input required type="text" value={shippingAddress.street} onChange={(e) => setShippingAddress({...shippingAddress, street: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#ff0033] focus:outline-none transition-colors" />
+                        <input required type="text" value={shippingAddress.street} onChange={(e) => setShippingAddress({...shippingAddress, street: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#C41E24] focus:outline-none transition-colors" />
                       </div>
                       <div className="col-span-2 md:col-span-1">
                         <label className="block text-xs font-montserrat text-zinc-500 dark:text-gray-400 uppercase tracking-wider mb-2">City</label>
-                        <input required type="text" value={shippingAddress.city} onChange={(e) => setShippingAddress({...shippingAddress, city: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#ff0033] focus:outline-none transition-colors" />
+                        <input required type="text" value={shippingAddress.city} onChange={(e) => setShippingAddress({...shippingAddress, city: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#C41E24] focus:outline-none transition-colors" />
                       </div>
                       <div className="col-span-2 md:col-span-1">
                         <label className="block text-xs font-montserrat text-zinc-500 dark:text-gray-400 uppercase tracking-wider mb-2">State</label>
-                        <input required type="text" value={shippingAddress.state} onChange={(e) => setShippingAddress({...shippingAddress, state: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#ff0033] focus:outline-none transition-colors" />
+                        <input required type="text" value={shippingAddress.state} onChange={(e) => setShippingAddress({...shippingAddress, state: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#C41E24] focus:outline-none transition-colors" />
                       </div>
                       <div className="col-span-2 md:col-span-1">
                         <label className="block text-xs font-montserrat text-zinc-500 dark:text-gray-400 uppercase tracking-wider mb-2">Postal Code</label>
-                        <input required type="text" value={shippingAddress.zipCode} onChange={(e) => setShippingAddress({...shippingAddress, zipCode: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#ff0033] focus:outline-none transition-colors" />
+                        <input required type="text" value={shippingAddress.zipCode} onChange={(e) => setShippingAddress({...shippingAddress, zipCode: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#C41E24] focus:outline-none transition-colors" />
                       </div>
                       <div className="col-span-2 md:col-span-1">
                         <label className="block text-xs font-montserrat text-zinc-500 dark:text-gray-400 uppercase tracking-wider mb-2">Phone</label>
-                        <input required type="text" value={shippingAddress.phone} onChange={(e) => setShippingAddress({...shippingAddress, phone: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#ff0033] focus:outline-none transition-colors" />
+                        <input required type="text" value={shippingAddress.phone} onChange={(e) => setShippingAddress({...shippingAddress, phone: e.target.value})} className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#C41E24] focus:outline-none transition-colors" />
                       </div>
                     </div>
 
@@ -527,7 +527,7 @@ export default function Checkout() {
                           type="checkbox" 
                           checked={saveNewAddress} 
                           onChange={(e) => setSaveNewAddress(e.target.checked)} 
-                          className="accent-[#ff0033] h-4 w-4"
+                          className="accent-[#C41E24] h-4 w-4"
                         />
                         <span className="text-sm font-poppins text-zinc-700 dark:text-gray-300">Save this address for future use</span>
                       </label>
@@ -538,7 +538,7 @@ export default function Checkout() {
                             type="checkbox" 
                             checked={setAsDefault} 
                             onChange={(e) => setSetAsDefault(e.target.checked)} 
-                            className="accent-[#ff0033] h-4 w-4"
+                            className="accent-[#C41E24] h-4 w-4"
                           />
                           <span className="text-sm font-poppins text-zinc-700 dark:text-gray-300">Set it as a default address</span>
                         </label>
@@ -547,7 +547,7 @@ export default function Checkout() {
                   </div>
                 )}
 
-                <button type="submit" className="w-full mt-8 bg-black dark:bg-white text-white dark:text-black py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-[#ff0033] dark:hover:bg-[#ff0033] hover:text-white dark:hover:text-white transition-colors cursor-pointer">
+                <button type="submit" className="w-full mt-8 bg-black dark:bg-white text-white dark:text-black py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-[#C41E24] dark:hover:bg-[#C41E24] hover:text-white dark:hover:text-white transition-colors cursor-pointer">
                   Continue to Payment
                 </button>
               </form>
@@ -558,9 +558,9 @@ export default function Checkout() {
                 <h2 className="text-2xl font-bebas text-black dark:text-white tracking-wide border-b border-zinc-200 dark:border-white/10 pb-4 mb-6">Payment Method</h2>
                 
                 <div className="space-y-4">
-                  <label className={`flex items-center justify-between p-4 border cursor-pointer hover:border-[#ff0033] dark:hover:border-[#ff0033] transition-colors rounded-lg bg-zinc-50 dark:bg-transparent ${paymentMethod === 'Razorpay' ? 'border-[#ff0033] ring-1 ring-[#ff0033]' : 'border-zinc-200 dark:border-white/20'}`}>
+                  <label className={`flex items-center justify-between p-4 border cursor-pointer hover:border-[#C41E24] dark:hover:border-[#C41E24] transition-colors rounded-lg bg-zinc-50 dark:bg-transparent ${paymentMethod === 'Razorpay' ? 'border-[#C41E24] ring-1 ring-[#C41E24]' : 'border-zinc-200 dark:border-white/20'}`}>
                     <div className="flex items-center space-x-3">
-                      <input type="radio" name="payment" value="Razorpay" checked={paymentMethod === 'Razorpay'} onChange={(e) => setPaymentMethod(e.target.value)} className="text-[#ff0033] focus:ring-[#ff0033]" />
+                      <input type="radio" name="payment" value="Razorpay" checked={paymentMethod === 'Razorpay'} onChange={(e) => setPaymentMethod(e.target.value)} className="text-[#C41E24] focus:ring-[#C41E24]" />
                       <div>
                         <span className="font-poppins text-zinc-800 dark:text-white">Pay Online</span>
                         <p className="text-xs font-poppins text-zinc-500 dark:text-gray-500 mt-0.5">Cards, UPI, Wallets, Net Banking via Razorpay</p>
@@ -569,9 +569,9 @@ export default function Checkout() {
                     <CreditCard className="text-zinc-400 dark:text-gray-400" />
                   </label>
 
-                  <label className={`flex items-center justify-between p-4 border cursor-pointer hover:border-[#ff0033] dark:hover:border-[#ff0033] transition-colors rounded-lg bg-zinc-50 dark:bg-transparent ${paymentMethod === 'UPI' ? 'border-[#ff0033] ring-1 ring-[#ff0033]' : 'border-zinc-200 dark:border-white/20'}`}>
+                  <label className={`flex items-center justify-between p-4 border cursor-pointer hover:border-[#C41E24] dark:hover:border-[#C41E24] transition-colors rounded-lg bg-zinc-50 dark:bg-transparent ${paymentMethod === 'UPI' ? 'border-[#C41E24] ring-1 ring-[#C41E24]' : 'border-zinc-200 dark:border-white/20'}`}>
                     <div className="flex items-center space-x-3">
-                      <input type="radio" name="payment" value="UPI" checked={paymentMethod === 'UPI'} onChange={(e) => setPaymentMethod(e.target.value)} className="text-[#ff0033] focus:ring-[#ff0033]" />
+                      <input type="radio" name="payment" value="UPI" checked={paymentMethod === 'UPI'} onChange={(e) => setPaymentMethod(e.target.value)} className="text-[#C41E24] focus:ring-[#C41E24]" />
                       <div>
                         <span className="font-poppins text-zinc-800 dark:text-white">UPI / QR Transfer</span>
                         <p className="text-xs font-poppins text-zinc-500 dark:text-gray-500 mt-0.5">Manual verification by admin</p>
@@ -579,9 +579,9 @@ export default function Checkout() {
                     </div>
                   </label>
 
-                  <label className={`flex items-center justify-between p-4 border cursor-pointer hover:border-[#ff0033] dark:hover:border-[#ff0033] transition-colors rounded-lg bg-zinc-50 dark:bg-transparent ${paymentMethod === 'COD' ? 'border-[#ff0033] ring-1 ring-[#ff0033]' : 'border-zinc-200 dark:border-white/20'}`}>
+                  <label className={`flex items-center justify-between p-4 border cursor-pointer hover:border-[#C41E24] dark:hover:border-[#C41E24] transition-colors rounded-lg bg-zinc-50 dark:bg-transparent ${paymentMethod === 'COD' ? 'border-[#C41E24] ring-1 ring-[#C41E24]' : 'border-zinc-200 dark:border-white/20'}`}>
                     <div className="flex items-center space-x-3">
-                      <input type="radio" name="payment" value="COD" checked={paymentMethod === 'COD'} onChange={(e) => setPaymentMethod(e.target.value)} className="text-[#ff0033] focus:ring-[#ff0033]" />
+                      <input type="radio" name="payment" value="COD" checked={paymentMethod === 'COD'} onChange={(e) => setPaymentMethod(e.target.value)} className="text-[#C41E24] focus:ring-[#C41E24]" />
                       <span className="font-poppins text-zinc-800 dark:text-gray-300">Cash on Delivery</span>
                     </div>
                   </label>
@@ -597,7 +597,7 @@ export default function Checkout() {
                   <button type="button" onClick={() => setStep(1)} className="w-1/3 border border-zinc-300 dark:border-white/20 text-zinc-700 dark:text-white py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-zinc-100 dark:hover:bg-white/5 transition-colors">
                     Back
                   </button>
-                  <button type="submit" disabled={paymentProcessing} className="w-2/3 bg-black dark:bg-white text-white dark:text-black py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-[#ff0033] dark:hover:bg-[#ff0033] hover:text-white dark:hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2">
+                  <button type="submit" disabled={paymentProcessing} className="w-2/3 bg-black dark:bg-white text-white dark:text-black py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-[#C41E24] dark:hover:bg-[#C41E24] hover:text-white dark:hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2">
                     {paymentProcessing ? (
                       <><span className="w-4 h-4 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin"></span><span>Processing...</span></>
                     ) : paymentMethod === 'Razorpay' ? 'Pay Now' : paymentMethod === 'UPI' ? 'Proceed to QR Code' : 'Place Order'}
@@ -631,7 +631,7 @@ export default function Checkout() {
                       <rect x="8" y="73" width="19" height="19" fill="#fff" />
                       <rect x="11" y="76" width="13" height="13" fill="#000" />
                       
-                      <rect x="42" y="42" width="16" height="16" rx="4" fill="#ff0033" />
+                      <rect x="42" y="42" width="16" height="16" rx="4" fill="#C41E24" />
                       <path d="M47 50 L53 50 M50 47 L50 53" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
                       
                       <rect x="35" y="10" width="6" height="6" fill="#000" />
@@ -667,7 +667,7 @@ export default function Checkout() {
 
                   <div className="space-y-2 max-w-sm mx-auto font-poppins text-sm text-zinc-650 dark:text-gray-400">
                     <p>Payee: <span className="font-bold text-black dark:text-white">REDSEE CLOTHING</span></p>
-                    <p>UPI ID: <span className="font-mono font-bold text-[#ff0033]">redsee@upi</span></p>
+                    <p>UPI ID: <span className="font-mono font-bold text-[#C41E24]">redsee@upi</span></p>
                     <p className="text-xs text-zinc-400 dark:text-gray-500 mt-2">Scan the QR code with any UPI app (PhonePe, Google Pay, Paytm, Bhim) and complete the transfer.</p>
                   </div>
 
@@ -680,7 +680,7 @@ export default function Checkout() {
                       placeholder="e.g. 518392019482" 
                       value={transactionRef} 
                       onChange={(e) => setTransactionRef(e.target.value.replace(/\D/g, ''))} 
-                      className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#ff0033] focus:outline-none transition-colors font-mono tracking-widest text-center" 
+                      className="w-full bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/20 p-3 text-black dark:text-white focus:border-[#C41E24] focus:outline-none transition-colors font-mono tracking-widest text-center" 
                     />
                     <p className="text-[10px] text-zinc-400 dark:text-gray-500 mt-1">Please enter the correct 12-digit numerical reference code to speed up verification.</p>
                   </div>
@@ -690,7 +690,7 @@ export default function Checkout() {
                   <button type="button" onClick={() => setStep(2)} className="w-1/3 border border-zinc-300 dark:border-white/20 text-zinc-700 dark:text-white py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-zinc-100 dark:hover:bg-white/5 transition-colors" disabled={verifying}>
                     Back
                   </button>
-                  <button type="submit" className="w-2/3 bg-black dark:bg-white text-white dark:text-black py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-[#ff0033] dark:hover:bg-[#ff0033] hover:text-white dark:hover:text-white transition-colors flex items-center justify-center space-x-2" disabled={verifying}>
+                  <button type="submit" className="w-2/3 bg-black dark:bg-white text-white dark:text-black py-4 font-montserrat uppercase tracking-wider font-bold text-sm hover:bg-[#C41E24] dark:hover:bg-[#C41E24] hover:text-white dark:hover:text-white transition-colors flex items-center justify-center space-x-2" disabled={verifying}>
                     {verifying ? (
                       <>
                         <span className="w-4 h-4 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin"></span>

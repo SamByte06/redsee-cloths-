@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import ProductCard from './ProductCard';
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function RecentlyViewedShelf({ section }: { section?: string }) {
   const { items, loading } = useSelector((state: RootState) => state.recentlyViewed);
@@ -39,20 +39,16 @@ export default function RecentlyViewedShelf({ section }: { section?: string }) {
   };
 
   return (
-    <section className="px-4 py-10 md:px-8 border-b border-zinc-200 dark:border-white/5 bg-zinc-50 dark:bg-[#090909] relative overflow-hidden group transition-colors duration-300">
-      {/* Subtle background ambiance glow */}
-      <div className="absolute top-0 left-1/4 w-[250px] h-[250px] bg-[#ff0033]/2 rounded-full blur-[110px] pointer-events-none" />
-      
+    <section className="px-4 py-12 md:px-8 border-b border-[#D5D0CA] dark:border-[#2A2A2A] bg-background relative overflow-hidden group transition-colors duration-300">
       <div className="max-w-7xl mx-auto relative">
-        
         {/* Shelf Header */}
-        <div className="flex justify-between items-end mb-6">
+        <div className="flex justify-between items-end mb-8">
           <div>
-            <span className="text-[10px] uppercase font-montserrat font-bold tracking-[0.2em] text-[#ff0033] block mb-1 flex items-center gap-1.5">
-              <Sparkles size={11} className="animate-pulse text-[#ff0033]" /> — Pick up where you left off
+            <span className="text-[11px] uppercase font-[family-name:var(--font-heading)] font-medium tracking-[0.2em] text-[#C41E24] block mb-1">
+              Recent Views
             </span>
-            <h2 className="text-2xl md:text-3xl font-bebas text-black dark:text-white tracking-widest uppercase">
-              Continue Shopping
+            <h2 className="text-2xl md:text-3xl font-[family-name:var(--font-heading)] font-bold text-foreground tracking-tight">
+              Continue Browsing
             </h2>
           </div>
         </div>
@@ -63,18 +59,18 @@ export default function RecentlyViewedShelf({ section }: { section?: string }) {
             {showLeftArrow && (
               <button
                 onClick={() => scroll('left')}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 w-9 h-9 rounded-full bg-white dark:bg-black/80 border border-zinc-200 dark:border-white/10 flex items-center justify-center text-zinc-800 dark:text-white hover:bg-[#ff0033] hover:border-[#ff0033] hover:text-white transition-all z-20 shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-3 w-9 h-9 bg-white dark:bg-[#1A1A1A] border border-[#D5D0CA] dark:border-[#2A2A2A] flex items-center justify-center text-foreground hover:bg-[#C41E24] hover:border-[#C41E24] hover:text-white transition-colors z-20 cursor-pointer"
                 aria-label="Scroll left"
               >
-                <ChevronLeft size={18} />
+                <ChevronLeft size={16} />
               </button>
             )}
             <button
               onClick={() => scroll('right')}
-              className="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 w-9 h-9 rounded-full bg-white dark:bg-black/80 border border-zinc-200 dark:border-white/10 flex items-center justify-center text-zinc-800 dark:text-white hover:bg-[#ff0033] hover:border-[#ff0033] hover:text-white transition-all z-20 shadow-[0_4px_12px_rgba(0,0,0,0.05)] dark:shadow-[0_0_15px_rgba(0,0,0,0.5)] cursor-pointer"
+              className="absolute right-0 top-1/2 -translate-y-1/2 -mr-3 w-9 h-9 bg-white dark:bg-[#1A1A1A] border border-[#D5D0CA] dark:border-[#2A2A2A] flex items-center justify-center text-foreground hover:bg-[#C41E24] hover:border-[#C41E24] hover:text-white transition-colors z-20 cursor-pointer"
               aria-label="Scroll right"
             >
-              <ChevronRight size={18} />
+              <ChevronRight size={16} />
             </button>
           </>
         )}
@@ -83,14 +79,14 @@ export default function RecentlyViewedShelf({ section }: { section?: string }) {
         <div
           ref={containerRef}
           onScroll={handleScroll}
-          className="flex overflow-x-auto no-scrollbar pb-3 gap-4 snap-x snap-mandatory scroll-smooth"
+          className="flex overflow-x-auto no-scrollbar pb-3 gap-1 snap-x snap-mandatory scroll-smooth"
         >
           {loading ? (
             Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="w-[170px] md:w-[220px] flex-shrink-0">
-                <div className="aspect-[3/4] bg-white/5 rounded-xl mb-3 skeleton" />
-                <div className="h-4 bg-white/5 rounded w-3/4 mb-2 skeleton" />
-                <div className="h-4 bg-white/5 rounded w-1/2 skeleton" />
+                <div className="aspect-[3/4] skeleton mb-3" />
+                <div className="h-4 skeleton w-3/4 mb-2" />
+                <div className="h-4 skeleton w-1/2" />
               </div>
             ))
           ) : (
@@ -118,7 +114,6 @@ export default function RecentlyViewedShelf({ section }: { section?: string }) {
             })
           )}
         </div>
-
       </div>
     </section>
   );

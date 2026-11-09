@@ -9,26 +9,29 @@ export default function WishlistPage() {
   const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
 
   return (
-    <div className="pt-10 min-h-screen">
-      <div className="container mx-auto px-6 mb-10">
-        <h1 className="text-4xl md:text-5xl font-bebas text-white tracking-wider mb-2">
-          MY WISHLIST
+    <div className="pt-12 min-h-screen bg-background pb-24 text-foreground">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-10">
+        <span className="text-[11px] uppercase font-[family-name:var(--font-heading)] font-medium tracking-[0.2em] text-[#C41E24] block mb-2">
+          Saved Pieces
+        </span>
+        <h1 className="text-4xl md:text-5xl font-[family-name:var(--font-heading)] font-bold tracking-tight mb-2">
+          Wishlist
         </h1>
-        <p className="text-gray-400 font-poppins mb-10">
-          Your saved items to purchase later.
+        <p className="text-[#8A8580] dark:text-[#706B66] font-[family-name:var(--font-body)] text-sm mb-10">
+          Curate pieces for your next order.
         </p>
-        
+
         {wishlistItems && wishlistItems.length > 0 ? (
           <ProductGrid products={wishlistItems} />
         ) : (
-          <div className="flex flex-col items-center justify-center py-20 text-center border border-white/5 bg-white/[0.01] rounded-3xl p-8 max-w-2xl mx-auto">
-            <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-4">
-              <Heart size={32} className="text-gray-600" />
+          <div className="flex flex-col items-center justify-center py-20 text-center border border-[#D5D0CA] dark:border-[#2A2A2A] bg-surface p-8 max-w-xl mx-auto">
+            <div className="w-14 h-14 bg-background border border-[#D5D0CA] dark:border-[#2A2A2A] flex items-center justify-center mb-4">
+              <Heart size={22} className="text-[#8A8580]" />
             </div>
-            <h3 className="text-white font-montserrat font-bold text-lg mb-2">Your wishlist is empty</h3>
-            <p className="text-gray-500 font-poppins text-sm max-w-sm">Save your favorite items here to easily find them later.</p>
-            <Link href="/shop" className="mt-6 border border-[#ff0033] text-[#ff0033] hover:bg-[#ff0033] hover:text-white px-8 py-3 rounded-lg font-montserrat font-bold text-sm tracking-widest uppercase transition-colors">
-              Discover Fashion
+            <h3 className="font-[family-name:var(--font-heading)] font-bold text-lg mb-2">Your wishlist is empty</h3>
+            <p className="text-[#8A8580] font-[family-name:var(--font-body)] text-xs max-w-sm mb-6">Tap the heart on any drop to pin it to your personal shortlist.</p>
+            <Link href="/shop" className="bg-[#C41E24] text-white px-6 py-2.5 font-[family-name:var(--font-heading)] font-semibold text-xs tracking-[0.15em] uppercase hover:bg-[#a01a1f] transition-colors">
+              Explore Drops
             </Link>
           </div>
         )}

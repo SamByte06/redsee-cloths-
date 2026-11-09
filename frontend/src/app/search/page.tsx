@@ -2,8 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search as SearchIcon, ArrowLeft, TrendingUp, X, Mic, MicOff, RefreshCw } from 'lucide-react';
-import Link from 'next/link';
+import { Search as SearchIcon, ArrowLeft, TrendingUp, X, Mic, MicOff } from 'lucide-react';
 import api from '@/lib/axios';
 import ProductCard from '@/components/ProductCard';
 
@@ -18,7 +17,6 @@ export default function SearchPage() {
   const recognitionRef = useRef<any>(null);
 
   useEffect(() => {
-    // Check if voice search is supported
     if (typeof window !== 'undefined') {
       const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
       if (SpeechRecognition) {
@@ -43,7 +41,6 @@ export default function SearchPage() {
       }
     }
 
-    // Load recent searches
     const saved = localStorage.getItem('redsee_recent_searches');
     if (saved) {
       try {
@@ -52,7 +49,6 @@ export default function SearchPage() {
     }
   }, []);
 
-  // Fetch instant results when user types
   useEffect(() => {
     if (!query.trim()) {
       setInstantResults([]);
@@ -86,12 +82,10 @@ export default function SearchPage() {
   const triggerSearch = (searchQuery: string) => {
     if (!searchQuery.trim()) return;
 
-    // Save to recents
     const newRecents = [searchQuery, ...recentSearches.filter(q => q !== searchQuery)].slice(0, 5);
     setRecentSearches(newRecents);
     localStorage.setItem('redsee_recent_searches', JSON.stringify(newRecents));
 
-    // Route to shop page with query
     router.push(`/shop?q=${encodeURIComponent(searchQuery)}`);
   };
 
@@ -102,85 +96,85 @@ export default function SearchPage() {
 
   const trendingSearches = [
     "Oversized Tees",
-    "Puffer Jackets",
-    "Cargo Pants",
-    "Limited Edition Hoodies",
-    "Sneakers"
+    "Heavyweight Hoodies",
+    "Cargo Trousers",
+    "Workwear Jackets",
+    "Boxy Shirts"
   ];
 
   return (
-    <div className="min-h-screen bg-background pt-safe pb-24 transition-colors duration-300">
+    <div className="min-h-screen bg-background pb-24 text-foreground transition-colors duration-300">
       {/* Search Header */}
-      <div className="sticky top-0 z-50 bg-background/90 backdrop-blur-lg px-4 py-3 border-b border-zinc-200 dark:border-white/5 flex items-center space-x-3">
-        <button onClick={() => router.back()} className="text-zinc-500 dark:text-gray-400 hover:text-foreground p-2 -ml-2 rounded-full active:bg-zinc-100 dark:active:bg-white/5 transition-colors">
-          <ArrowLeft size={22} />
+      <div className="sticky top-0 z-50 bg-[#F5F0EB] dark:bg-[#111111] px-4 py-3 border-b border-[#D5D0CA] dark:border-[#2A2A2A] flex items-center space-x-3">
+        <button onClick={() => router.back()} className="text-foreground p-1 -ml-1">
+          <ArrowLeft size={20} />
         </button>
 
         <form onSubmit={handleSearchSubmit} className="flex-1 relative flex items-center">
-          <SearchIcon size={16} className="absolute left-4.5 text-zinc-500" />
+          <SearchIcon size={15} className="absolute left-3.5 text-[#8A8580]" />
           <input
             type="text"
             autoFocus
-            placeholder="Search Hoodies, Tees, Jackets..."
+            placeholder="Search drops, silhouettes, colors..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/10 focus:border-[#ff0033] rounded-full pl-11 pr-20 py-2.5 text-foreground text-sm font-poppins outline-none transition-all"
+            className="w-full bg-surface border border-[#D5D0CA] dark:border-[#2A2A2A] focus:border-[#C41E24] pl-10 pr-20 py-2 text-foreground text-xs md:text-sm font-[family-name:var(--font-body)] outline-none"
           />
-          <div className="absolute right-3 flex items-center space-x-2.5">
+          <div className="absolute right-3 flex items-center space-x-2">
             {query && (
               <button 
                 type="button" 
                 onClick={() => setQuery('')}
-                className="text-zinc-550 dark:text-gray-500 hover:text-foreground"
+                className="text-[#8A8580] hover:text-foreground"
               >
-                <X size={16} />
+                <X size={15} />
               </button>
             )}
             {voiceSupported && (
               <button
                 type="button"
                 onClick={toggleVoiceSearch}
-                className={`p-1.5 rounded-full transition-all ${
-                  isListening ? 'bg-[#ff0033] text-white animate-pulse' : 'text-zinc-550 dark:text-gray-500 hover:text-foreground'
+                className={`p-1 transition-all ${
+                  isListening ? 'text-[#C41E24]' : 'text-[#8A8580] hover:text-foreground'
                 }`}
                 title="Voice search"
               >
-                {isListening ? <MicOff size={16} /> : <Mic size={16} />}
+                {isListening ? <MicOff size={15} /> : <Mic size={15} />}
               </button>
             )}
           </div>
         </form>
       </div>
 
-      <div className="px-4 mt-6 max-w-4xl mx-auto">
-        {/* Voice Listening Overlay */}
+      <div className="px-4 mt-8 max-w-5xl mx-auto">
+        {/* Voice indicator */}
         {isListening && (
-          <div className="mb-6 bg-[#ff0033]/5 border border-[#ff0033]/25 rounded-xl p-4 flex flex-col items-center justify-center animate-pulse">
-            <Mic size={32} className="text-[#ff0033] mb-2 animate-bounce" />
-            <p className="text-foreground font-montserrat font-medium text-xs tracking-wider uppercase">Listening...</p>
-            <p className="text-zinc-500 dark:text-gray-400 text-xs font-poppins mt-1">Speak now to search REDSEE collection</p>
+          <div className="mb-6 bg-surface border border-[#C41E24] p-4 flex flex-col items-center justify-center">
+            <Mic size={24} className="text-[#C41E24] mb-2 animate-pulse" />
+            <p className="text-foreground font-[family-name:var(--font-heading)] font-semibold text-xs tracking-wider uppercase">Listening</p>
+            <p className="text-[#8A8580] text-xs font-[family-name:var(--font-body)] mt-1">Speak piece name or style</p>
           </div>
         )}
 
-        {/* Live suggestions / Instant results shelf */}
+        {/* Live suggestions */}
         {query.trim() && (
           <div>
-            <h3 className="text-xs font-montserrat uppercase tracking-widest text-zinc-500 dark:text-gray-400 font-bold mb-4">
-              Instant Results
+            <h3 className="text-[11px] font-[family-name:var(--font-heading)] uppercase tracking-[0.2em] text-[#C41E24] font-medium mb-4">
+              Matches
             </h3>
 
             {loadingResults ? (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="animate-pulse">
-                    <div className="aspect-[3/4] bg-zinc-100 dark:bg-white/5 rounded-xl mb-2"></div>
-                    <div className="h-3 bg-zinc-100 dark:bg-white/5 rounded w-3/4 mb-1.5"></div>
-                    <div className="h-3 bg-zinc-100 dark:bg-white/5 rounded w-1/2"></div>
+                  <div key={i}>
+                    <div className="aspect-[3/4] skeleton mb-2"></div>
+                    <div className="h-3 skeleton w-3/4 mb-1.5"></div>
+                    <div className="h-3 skeleton w-1/2"></div>
                   </div>
                 ))}
               </div>
             ) : instantResults.length > 0 ? (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-1">
                 {instantResults.map((product) => (
                   <ProductCard
                     key={product._id}
@@ -196,29 +190,28 @@ export default function SearchPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
-                <p className="text-zinc-500 dark:text-gray-500 font-poppins text-sm">No products matched "{query}"</p>
+              <div className="text-center py-16 bg-surface border border-[#D5D0CA] dark:border-[#2A2A2A]">
+                <p className="text-[#8A8580] font-[family-name:var(--font-body)] text-xs">No items matched "{query}".</p>
               </div>
             )}
           </div>
         )}
 
-        {/* Default content: recent and trending searches */}
+        {/* Default content */}
         {!query.trim() && (
-          <>
-            {/* Recent Searches */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {recentSearches.length > 0 && (
-              <div className="mb-8">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="text-xs font-montserrat uppercase tracking-widest text-gray-500 font-bold">Recent Searches</h3>
+              <div>
+                <div className="flex justify-between items-center mb-4 pb-2 border-b border-[#D5D0CA] dark:border-[#2A2A2A]">
+                  <h3 className="text-xs font-[family-name:var(--font-heading)] uppercase tracking-wider text-[#8A8580]">Recent</h3>
                   <button 
                     onClick={() => {
                       setRecentSearches([]);
                       localStorage.removeItem('redsee_recent_searches');
                     }}
-                    className="text-[10px] text-[#ff0033] font-montserrat uppercase tracking-widest font-bold"
+                    className="text-[10px] text-[#C41E24] font-[family-name:var(--font-heading)] uppercase tracking-wider hover:underline"
                   >
-                    Clear All
+                    Clear
                   </button>
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -229,7 +222,7 @@ export default function SearchPage() {
                         setQuery(term);
                         triggerSearch(term);
                       }}
-                      className="px-4 py-2 rounded-full border border-white/5 bg-white/5 text-xs font-poppins text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
+                      className="px-3 py-1.5 border border-[#D5D0CA] dark:border-[#2A2A2A] bg-surface text-xs font-[family-name:var(--font-body)] text-foreground hover:border-foreground transition-colors"
                     >
                       {term}
                     </button>
@@ -238,12 +231,13 @@ export default function SearchPage() {
               </div>
             )}
 
-            {/* Trending Searches */}
             <div>
-              <h3 className="text-xs font-montserrat uppercase tracking-widest text-gray-500 font-bold mb-4 flex items-center">
-                <TrendingUp size={14} className="mr-2 text-[#ff0033]" />
-                Trending Now
-              </h3>
+              <div className="mb-4 pb-2 border-b border-[#D5D0CA] dark:border-[#2A2A2A] flex items-center justify-between">
+                <h3 className="text-xs font-[family-name:var(--font-heading)] uppercase tracking-wider text-[#8A8580] flex items-center gap-1.5">
+                  <TrendingUp size={13} className="text-[#C41E24]" />
+                  Trending Searches
+                </h3>
+              </div>
               <div className="space-y-1">
                 {trendingSearches.map((term, i) => (
                   <div 
@@ -252,15 +246,15 @@ export default function SearchPage() {
                       setQuery(term);
                       triggerSearch(term);
                     }}
-                    className="flex items-center space-x-3 py-3 px-2 rounded-lg hover:bg-white/5 active:bg-white/10 transition-colors cursor-pointer group"
+                    className="flex items-center space-x-3 py-2.5 px-3 bg-surface hover:bg-background border border-transparent hover:border-[#D5D0CA] dark:hover:border-[#2A2A2A] transition-colors cursor-pointer group"
                   >
-                    <SearchIcon size={15} className="text-gray-600 group-hover:text-[#ff0033] transition-colors" />
-                    <span className="text-sm font-poppins text-gray-300 group-hover:text-white transition-colors">{term}</span>
+                    <SearchIcon size={13} className="text-[#8A8580] group-hover:text-[#C41E24] transition-colors" />
+                    <span className="text-xs font-[family-name:var(--font-body)] text-foreground">{term}</span>
                   </div>
                 ))}
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

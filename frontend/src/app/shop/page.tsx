@@ -17,19 +17,24 @@ function ShopContent() {
   }, [dispatch, query]);
 
   return (
-    <div className="pt-10 min-h-screen bg-background pb-20 transition-colors duration-300">
-      <div className="container mx-auto px-6 mb-10 text-center">
-        <h1 className="text-5xl md:text-6xl font-bebas text-zinc-900 dark:text-white tracking-wider mb-4">
-          {query ? `RESULTS FOR "${query.toUpperCase()}"` : "ALL COLLECTION"}
+    <div className="pt-12 min-h-screen bg-background pb-24 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-12">
+        <span className="text-[11px] uppercase font-[family-name:var(--font-heading)] font-medium tracking-[0.2em] text-[#C41E24] block mb-2">
+          {query ? "Search Results" : "Catalog"}
+        </span>
+        <h1 className="text-4xl md:text-6xl font-[family-name:var(--font-heading)] font-bold text-foreground tracking-tight mb-3">
+          {query ? `Results for "${query}"` : "All Pieces"}
         </h1>
-        <p className="text-zinc-600 dark:text-zinc-400 font-poppins max-w-2xl mx-auto">
-          {query ? "Explore our collection matching your search." : "Explore our complete collection of premium dropshipping streetwear and luxury aesthetics."}
+        <p className="text-[#8A8580] dark:text-[#706B66] font-[family-name:var(--font-body)] text-sm md:text-base max-w-xl">
+          {query
+            ? `Showing items matching "${query}".`
+            : "The full roster. Heavyweight cottons, technical cuts, and custom silhouettes."}
         </p>
       </div>
-      
+
       {loading ? (
-        <div className="flex justify-center items-center py-20">
-          <div className="w-8 h-8 border-2 border-[#ff0033] border-t-transparent rounded-full animate-spin"></div>
+        <div className="flex justify-center items-center py-24">
+          <div className="w-6 h-6 border-2 border-[#C41E24] border-t-transparent rounded-full animate-spin"></div>
         </div>
       ) : (
         <ProductGrid products={products} />
@@ -40,7 +45,7 @@ function ShopContent() {
 
 export default function ShopPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-black" />}>
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
       <ShopContent />
     </Suspense>
   );
