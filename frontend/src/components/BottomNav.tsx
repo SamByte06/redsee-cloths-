@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, LayoutGrid, ShoppingCart, User, Heart, Sun, Moon, ClipboardList } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Home, LayoutGrid, ShoppingCart, Sun, Moon, ClipboardList } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useTheme } from 'next-themes';
@@ -42,7 +41,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/90 dark:bg-black/80 backdrop-blur-xl border-t border-zinc-200 dark:border-white/10 pb-safe text-foreground">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#F5F0EB]/95 dark:bg-[#111111]/95 border-t border-[#D5D0CA] dark:border-[#2A2A2A] pb-safe text-foreground">
       <nav className="flex justify-around items-center px-2 py-3">
         {navItems.map((item) => {
           const isActive = !item.isAction && item.path && (pathname === item.path || (item.path !== '/' && pathname?.startsWith(item.path)));
@@ -50,27 +49,23 @@ export default function BottomNav() {
 
           const content = (
             <>
-              <div className="relative">
+              <div className="relative flex flex-col items-center">
                 <Icon 
                   size={22} 
-                  className={`transition-colors duration-300 ${isActive ? 'text-[#ff0033]' : 'text-gray-500 hover:text-zinc-800 dark:hover:text-white'}`} 
+                  className={`transition-colors duration-200 ${isActive ? 'text-[#C41E24]' : 'text-[#8A8580] dark:text-[#706B66]'}`} 
                 />
-                {isActive && (
-                  <motion.div
-                    layoutId="bottom-nav-indicator"
-                    className="absolute inset-0 bg-[#ff0033] blur-xl opacity-40 rounded-full"
-                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
                 {item.badge && item.badge > 0 ? (
-                  <span className="absolute -top-1.5 -right-2 bg-[#ff0033] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center shadow-[0_0_10px_rgba(255,0,51,0.5)]">
+                  <span className="absolute -top-1.5 -right-2 bg-[#C41E24] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
                     {item.badge > 9 ? '9+' : item.badge}
                   </span>
                 ) : null}
               </div>
-              <span className={`text-[10px] mt-1 font-montserrat tracking-wider transition-colors duration-300 ${isActive ? 'text-black dark:text-white' : 'text-gray-500 hover:text-zinc-800 dark:hover:text-white'}`}>
+              <span className={`text-[10px] mt-1 font-[family-name:var(--font-heading)] tracking-wider transition-colors duration-200 ${isActive ? 'text-foreground' : 'text-[#8A8580] dark:text-[#706B66]'}`}>
                 {item.name}
               </span>
+              {isActive && (
+                <span className="block w-[3px] h-[3px] rounded-full bg-[#C41E24] mt-0.5" />
+              )}
             </>
           );
 
@@ -80,7 +75,7 @@ export default function BottomNav() {
               <button 
                 key={item.name} 
                 onClick={item.onClick} 
-                className="relative flex flex-col items-center justify-center w-full h-12 text-gray-500 active:scale-95 transition-transform"
+                className="relative flex flex-col items-center justify-center w-full h-12 text-[#8A8580] dark:text-[#706B66] active:scale-95 transition-transform"
               >
                 {content}
               </button>

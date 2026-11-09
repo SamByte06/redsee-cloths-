@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Heart, ShoppingBag, Check, Star } from "lucide-react";
+import { Heart, ShoppingBag, Check } from "lucide-react";
 import { useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
@@ -84,20 +84,20 @@ const ProductCard = memo(({ id, name, price, image, hoverImage, category, rating
 
   return (
     <div 
-      className="product-card group relative flex flex-col bg-white dark:bg-background border border-zinc-200 dark:border-white/5 hover:border-zinc-300 dark:hover:border-white/10 transition-all duration-300 rounded-xl overflow-hidden shadow-lg hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
+      className="product-card group relative flex flex-col bg-white dark:bg-[#111111] border border-[#D5D0CA] dark:border-[#2A2A2A] hover:border-[#1A1A1A] dark:hover:border-[#E8E4DF] transition-colors duration-300 rounded-none overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Badges */}
+      {/* Discount Badge */}
       <div className="absolute top-3 left-3 z-20 flex flex-col space-y-1.5 pointer-events-none">
         {discount && discount > 0 ? (
-          <span className="bg-[#ff0033] text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider shadow-[0_0_10px_rgba(255,0,51,0.5)]">
+          <span className="bg-[#C41E24] text-white text-[10px] font-semibold px-2 py-0.5 uppercase tracking-wider">
             -{discount}% OFF
           </span>
         ) : null}
       </div>
 
-      {/* Quick Wishlist */}
+      {/* Wishlist Button */}
       <button 
         onClick={(e) => {
           e.preventDefault();
@@ -108,45 +108,42 @@ const ProductCard = memo(({ id, name, price, image, hoverImage, category, rating
             dispatch(toggleWishlistBackend(id) as any);
           }
         }}
-        className="absolute top-3 right-3 z-20 bg-white/80 dark:bg-black/60 p-2 rounded-full border border-zinc-200 dark:border-white/10 text-foreground/75 hover:text-[#ff0033] hover:border-[#ff0033]/40 active:scale-90 transition-all shadow-md"
+        className="absolute top-3 right-3 z-20 bg-white dark:bg-[#1A1A1A] p-2 rounded-full border border-[#D5D0CA] dark:border-[#2A2A2A] text-[#8A8580] hover:text-[#C41E24] active:scale-90 transition-colors"
         aria-label="Add to wishlist"
       >
-        <Heart size={15} className={isWishlisted ? "fill-[#ff0033] text-[#ff0033]" : "text-zinc-600 dark:text-white"} />
+        <Heart size={15} className={isWishlisted ? "fill-[#C41E24] text-[#C41E24]" : ""} />
       </button>
 
       {/* Image Container */}
       <Link 
         href={`/product/${id}`} 
         onClick={handleCardClick}
-        className="relative aspect-[3/4] w-full overflow-hidden bg-zinc-100 dark:bg-zinc-900 block"
+        className="relative aspect-[3/4] w-full overflow-hidden bg-[#EDEAE5] dark:bg-[#1A1A1A] block"
       >
         <img 
           src={isHovered ? hoverImgUrl : imgUrl} 
           alt={name}
-          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"
           decoding="async"
         />
-        {/* Soft shadow overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 dark:from-black/60 via-transparent to-transparent opacity-60 pointer-events-none" />
       </Link>
 
       {/* Details */}
-      <div className="p-3.5 flex flex-col flex-grow bg-white dark:bg-[#0A0A0A]">
+      <div className="p-3.5 flex flex-col flex-grow bg-white dark:bg-[#111111]">
         {/* Category & Rating */}
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[9px] text-zinc-500 dark:text-gray-500 uppercase tracking-widest font-montserrat font-medium truncate max-w-[70%]">
+          <span className="text-[10px] text-[#8A8580] dark:text-[#706B66] uppercase tracking-widest font-[family-name:var(--font-heading)] font-medium truncate max-w-[70%]">
             {category}
           </span>
-          <div className="flex items-center gap-0.5">
-            <Star size={10} className="fill-[#ff0033] text-[#ff0033]" />
-            <span className="text-[10px] text-zinc-700 dark:text-gray-300 font-bold font-poppins">{rating.toFixed(1)}</span>
-          </div>
+          <span className="text-[10px] text-[#C41E24] font-[family-name:var(--font-body)] font-bold">
+            {rating.toFixed(1)}
+          </span>
         </div>
 
         {/* Product Title */}
         <Link href={`/product/${id}`} onClick={handleCardClick}>
-          <h3 className="text-sm md:text-base font-bebas tracking-wide text-black dark:text-white mb-2 hover:text-[#ff0033] dark:hover:text-[#ff0033] transition-colors line-clamp-1 leading-tight uppercase">
+          <h3 className="font-[family-name:var(--font-heading)] font-semibold text-sm uppercase tracking-wide text-[#1A1A1A] dark:text-white mb-2 hover:text-[#C41E24] dark:hover:text-[#C41E24] transition-colors line-clamp-1 leading-tight">
             {name}
           </h3>
         </Link>
@@ -155,19 +152,19 @@ const ProductCard = memo(({ id, name, price, image, hoverImage, category, rating
         <div className="mt-auto flex items-center justify-between pt-1">
           <div className="flex flex-col">
             {discount && discount > 0 ? (
-              <span className="text-[10px] text-zinc-400 dark:text-gray-500 line-through font-poppins mb-0.5">
+              <span className="text-[10px] text-[#8A8580] line-through font-[family-name:var(--font-body)] mb-0.5">
                 ₹{(price / (1 - discount / 100)).toFixed(2)}
               </span>
             ) : null}
-            <span className="text-sm md:text-base font-bold font-poppins text-black dark:text-white leading-none">₹{price}</span>
+            <span className="text-sm md:text-base font-bold font-[family-name:var(--font-body)] text-[#1A1A1A] dark:text-white leading-none">₹{price}</span>
           </div>
 
           <button 
             onClick={handleQuickAdd}
-            className={`w-8 h-8 md:w-9 md:h-9 rounded-full border flex items-center justify-center transition-all active:scale-90 shadow-lg ${
+            className={`w-8 h-8 md:w-9 md:h-9 rounded-full border flex items-center justify-center transition-colors active:scale-90 ${
               addedToCart 
-                ? "bg-green-500 border-green-500 text-white" 
-                : "bg-zinc-100 dark:bg-white/5 border-zinc-200 dark:border-white/10 text-zinc-800 dark:text-white hover:bg-[#ff0033] hover:border-[#ff0033] hover:text-white dark:hover:text-white hover:shadow-[0_0_12px_rgba(255,0,51,0.4)]"
+                ? "bg-green-600 border-green-600 text-white" 
+                : "bg-[#EDEAE5] dark:bg-[#1A1A1A] border-[#D5D0CA] dark:border-[#2A2A2A] text-[#1A1A1A] dark:text-white hover:bg-[#C41E24] hover:border-[#C41E24] hover:text-white"
             }`}
             title="Quick add to cart"
           >

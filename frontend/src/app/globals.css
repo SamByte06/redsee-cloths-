@@ -1,84 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-bebas: "Bebas Neue", sans-serif;
-  --font-poppins: "Poppins", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-surface: var(--surface);
 }
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #0A0A0A;
-    --primary: #7A0000;
-    --secondary: #f4f4f5;
-    --accent: #ff0033;
-    --border: rgba(0, 0, 0, 0.1);
-    --glass: rgba(0, 0, 0, 0.05);
-    --glass-border: rgba(0, 0, 0, 0.1);
-    --bg-overlay: rgba(255, 255, 255, 0.8);
-    --shimmer-base: #f4f4f5;
-    --shimmer-highlight: #e4e4e7;
+    --background: #F5F0EB;
+    --foreground: #1A1A1A;
+    --primary: #C41E24;
+    --secondary: #EDEAE5;
+    --accent: #C41E24;
+    --border: #D5D0CA;
+    --muted: #8A8580;
+    --surface: #EDEAE5;
+    --shimmer-base: #E8E4DF;
+    --shimmer-highlight: #D5D0CA;
   }
 
   .dark {
-    --background: #0A0A0A;
-    --foreground: #ffffff;
-    --primary: #7A0000;
-    --secondary: #1a1a1a;
-    --accent: #ff0033;
-    --border: rgba(255, 255, 255, 0.1);
-    --glass: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --bg-overlay: rgba(0, 0, 0, 0.4);
-    --shimmer-base: #1a1a1a;
+    --background: #111111;
+    --foreground: #E8E4DF;
+    --primary: #C41E24;
+    --secondary: #1A1A1A;
+    --accent: #C41E24;
+    --border: #2A2A2A;
+    --muted: #706B66;
+    --surface: #1A1A1A;
+    --shimmer-base: #1A1A1A;
     --shimmer-highlight: #252525;
   }
 
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-poppins);
+    font-family: var(--font-body);
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
   }
 
-  h1, h2, h3 {
-    font-family: var(--font-bebas);
-    letter-spacing: 0.05em;
-  }
-}
-
-@layer utilities {
-  .text-glow {
-    text-shadow: 0 0 10px rgba(255, 0, 51, 0.7);
-  }
-  
-  .box-glow {
-    box-shadow: 0 0 20px rgba(122, 0, 0, 0.5);
-  }
-
-  .glassmorphism {
-    background-color: var(--glass);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-  }
-  
-  .glassmorphism-dark {
-    background-color: var(--bg-overlay);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
   }
 }
 
@@ -99,43 +76,14 @@
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #7A0000;
+  background: var(--muted);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff0033;
+  background: var(--accent);
 }
 
-/* Category circle hover */
-.cat-circle {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.cat-circle:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(255, 0, 51, 0.15);
-}
-
-/* Section card hover */
-.section-card {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.section-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-}
-.section-card:hover .section-card-img {
-  transform: scale(1.06);
-}
-.section-card-img {
-  transition: transform 0.6s ease;
-}
-
-/* Deal timer — static, no infinite animation */
-.timer-box {
-  box-shadow: 0 0 8px rgba(255,0,51,0.2);
-}
-
-/* Shimmer for banner loading */
+/* Shimmer for skeleton loading */
 @keyframes shimmer {
   0% { background-position: -200% center; }
   100% { background-position: 200% center; }
@@ -147,48 +95,7 @@
   border-radius: 0.25rem;
 }
 
-/* Hero Carousel */
-.hero-carousel {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  user-select: none;
-  -webkit-user-select: none;
-}
-.hero-carousel::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ff0033, transparent);
-  opacity: 0.4;
-  z-index: 10;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  animation: marquee 35s linear infinite;
-}
-
-.animate-marquee-reverse {
-  animation: marquee 25s linear infinite reverse;
-}
-
-@keyframes logoReveal {
-  0% { letter-spacing: -0.1em; opacity: 0; filter: blur(10px); }
-  100% { letter-spacing: 0.25em; opacity: 1; filter: blur(0); }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-/* Product card CSS fade-in (replaces framer-motion) */
+/* Product card fade-in */
 .product-card {
   animation: cardFadeIn 0.4s ease both;
 }
@@ -197,14 +104,16 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Generic fade-in utility */
+/* Generic fade-in */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 .animate-fadeIn {
   animation: fadeIn 0.3s ease both;
 }
 
 /* Optimize compositing for animated elements */
-.hero-carousel,
-.animate-marquee,
-.animate-marquee-reverse {
-  will-change: transform;
+.skeleton {
+  will-change: background-position;
 }
